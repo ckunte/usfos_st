@@ -1,0 +1,129 @@
+%YAML 1.2
+---
+name: USFOS
+
+file_extensions:
+  - fem
+
+scope: source.fem
+
+contexts:
+
+  main:
+    - include: misc
+    - include: ident
+    - include: ctrparam
+    - include: modelparam
+    - include: comments
+
+  comments:
+    - match: ('|!|%|#)(.*)$
+      scope: comment.line.fem
+
+  misc:
+    - match: \b(?i)(activelm|chg_(boun|geo|mat)|coroload|illegal|invisible|si|spriscal|switches|totl2inc)\b
+      scope: invalid.illegal.fem
+
+  # Identification  
+  ident:
+    - match: \b(?i)(head|c(print|save)|xfosfull)\b
+      scope: storage.type.fem
+
+  # CONTROL PARAMETERS
+  ctrparam:
+    # Load control
+    - match: \b(?i)(c(us|icy)fos|cnodes|(dynam|stat)ic|(time|load)hist|ini_time)\b
+      scope: keyword.control.fem
+    # Analysis control parameters
+    - match: \b(?i)(arc_off|c(bifurc|maxstep|propar)|dent_(off|type)|(deter|surf2)off|eigenval|eq_corr)\b
+      scope: entity.name.function.fem
+    # Numerical procedure parameters
+    - match: \b(?i)(c(dynpar|iter|unfal)|liter|pcor_(off|on))\b
+      scope: variable.parameter.numproc.fem
+    # Fracture / ductility control
+    - match: \b(?i)(damage|(c|m)fract|userfrac)\b
+      scope: keyword.operator.fem
+    # Fire (temperature) analysis
+    - match: \b(?i)((alum|steel|user)tdep|ctfract|(bel|elem)temp|firechk|lcasetim|pushdown|t(depfunc|fract|mplocon))\b
+      scope: keyword.operator.fem
+    # Ship impact analysis
+    - match: \b(?i)(bimp(act|data)|dynimpct|mship|mult_imp)\b
+      scope: variable.parameter.fem
+
+  # MODELLING PARAMETERS
+  modelparam:
+    # Dynamic parameters
+    - match: \b(?i)(consimas|damp(data|dep|ratio)|dynres_(e|g|n|x)|(elem|rayl|sys)damp|ini_velo|lumpmass)\b
+      scope: constant.other.fem
+    # Material / plasticity 
+    - match: \b(?i)(gbound|m(isoiep|plas(cyc|mon)|ref)|strainmod)\b
+      scope: constant.numeric.fem
+    # Member
+    - match: \b(?i)(celhinx|plasthin|beamhing|(beam|spri)type|gimper|gelimp|member|blindp2|nonstru|structel|lin_elem|cinidef|buckmode|grouted)\b
+      scope: constant.numeric.fem
+    # Joint
+    - match: \b(?i)(c(hjoint|nohinx)|jnt(_form|class)|jointgap|jsurfsiz|overlap|shell)\b
+      scope: constant.other.fem
+    # Foundation
+    - match: \b(?i)(api_soil|mspud|pile(|_d-t|geo|geo|mat|opt)|soilchar|spri(_mod|damp)|spudmat)\b
+      scope: constant.other.fem
+    # External and internal pressure Effects
+    - match: \b(?i)(extpres|belpress|pressdat|surflev)\b
+      scope: constant.numeric.fem
+    # Super-element / sub-structure modelling
+    - match: \b(?i)(mesh(box|ipro|pipe|quad)|ssh_load|subshell|substru|superelm)\b
+      scope: constant.numeric.fem
+    # Groups / parts
+    - match: \b(?i)(group(def|nod)|name|part(data|elem))\b
+      scope: constant.numeric.fem
+    # Hydrodynamics
+    - match: \b(?i)(buoy(ancy|form|hist)|curr(bloc|ent|hist)|flooded|hy(berkey|d(_cdcm|mass|ro_cd7))|(max|spool)wave|nonhydro|rel_velo|wav(case1|e_int|e_krf|edata|mxscl)|wet_elem)\b
+      scope: support.function.fem
+    # Aerodynamics
+    - match: \b(?i)(wind(field|hist|par)|w_coeffs|elmcoeff|maxwind)\b
+      scope: support.function.fem
+    # Earthquake
+    - match: \b(?i)(node(disp|velo|acc)|soil(acc|disp))\b
+      scope: entity.name.type.fem
+    # Ice impact
+    - match: \b(?i)(iceload|maxice)\b
+      scope: entity.name.type.fem
+    # Nodal data
+    - match: \b(?i)(nod(e(|load|mass)|trans)|locnmass|weight|surfimp)\b
+      scope: entity.name.type.fem
+    # Element data
+    - match: \b(?i)(beam(|load)|sprng2gr|membrane|quadshel|trishell|pressure|shel(pres|load)|refine|unitvec|eccent|x_elmass|addmbeam|banana|elmtrans)\b
+      scope: entity.name.type.fem
+    # Cross sectional data
+    - match: \b(?i)(bar|box|genbeam|geometry|ihprofil|lsection|pipe|plthick|surfpipe)\b
+      scope: entity.name.type.fem
+    # Material data
+    - match: \b(?i)(elplcurv|hypelast|material|spridiag|sprifull)\b
+      scope: constant.numeric.fem
+    # Load data
+    - match: \b(?i)(gravity|accfield|loafield|equip_(1n|2n|4n))\b
+      scope: entity.name.type.fem
+    # Fahts simulation
+    - match: \b(?i)(tempsim|timeunit|initemp|tmpcase1)\b
+      scope: entity.name.type.fem
+    # Fahts thermal data
+    - match: \b(?i)(therm(par|dep)|elmtherm|tempdepy)\b
+      scope: entity.name.type.fem
+    # Fahts fire sources
+    - match: \b(?i)((hc|iso|limt|mov|user)fire|kameleon|nodetemp|shapfact|user(flux|jet|temp))\b
+      scope: entity.name.type.fem
+    # Fahts insulation
+    - match: \b(?i)(elmin(sid|sul)|ins_grup|ins((id|ul)par|uldep)|pfplocal)\b
+      scope: entity.name.type.fem
+    # Fahts misc modelling
+    - match: \b(?i)(exp_(box|elem|grup|ipro|quad)|explocal|glview|kamelexp|limitmod|lin_rule|moviepri|no(exposure|nolinear)|pfpscale|remesh_box|remesh_i|shield|temp_plo|userdeluge)\b
+      scope: entity.name.type.fem
+    # StruMan export format
+    - match: \b(?i)(sesam|ufo|abaqus|raf|preframe|sacs|movbyu|vtf|loadfile)\b
+      scope: support.class.fem
+    # StruMan substructures
+    - match: \b(?i)(mergstru|tolmerge|sub(_stru|smult|tran))\b
+      scope: support.class.fem
+    # StruMan misc commands
+    - match: \b(?i)(c(heckelm|hg2genb|ombload|onvunit)|fatigue|gebe2pip|hparatio|id_add_(a|e|g|l|m|n|x)|int_(ecno|elno|geno|lcno|mano|npno)|limitmod|loa(2mass|dtran)|map_mass|nodeset|printmas|rmfreenp|shriprop|strutran)\b
+      scope: support.class.fem
