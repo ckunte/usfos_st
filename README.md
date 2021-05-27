@@ -2,7 +2,7 @@
 
 [USFOS] is a super efficient commercial computer software for performing non-linear static and dynamic analysis of space frame structures.
 
-The syntax file `usfos.sublime-syntax` included in this repository [color codes][s] the various parameters used in USFOS input files (with `.fem` extension) to help break the monotony of text and improve readability of input file(s). It works with [Sublime Text 3][st] in MacOS, Windows 10, or Linux. Below is an example of a syntax highlighted control file:
+The syntax file `usfos.sublime-syntax` included in this repository [color codes][s] the various parameters used in USFOS input files (with `.fem` extension) to help break the monotony of text and improve readability of input file(s). It works with [Sublime Text][st] in MacOS, Windows 10, or Linux. Below is an example of a syntax highlighted control file:
 
 ![USFOS control file syntax highlighted in Sublime Text](./usfos_st.png)
 
@@ -10,7 +10,7 @@ The syntax file `usfos.sublime-syntax` included in this repository [color codes]
 
 ### From package control (recommended)
 
-With this package now available from [Package Control][pkg] `usfos_st` can be installed from directly within Sublime Text 3. Here is how:
+With this package now available from [Package Control][pkg] `usfos_st` can be installed from directly within Sublime Text. Here is how:
 
 1. From _Tools_, select _Install Package Control..._ (skip step if installed)
 2. From _Preferences > Package Control > Install Package_, search for `usfos` and select
