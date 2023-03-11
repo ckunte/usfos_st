@@ -65,13 +65,13 @@ contexts:
     - match: \b(?i)(c(hjoint|nohinx)|jnt(_form|class)|jointgap|jsurfsiz|overlap|shell)\b
       scope: constant.other.fem
     # Foundation
-    - match: \b(?i)(api_soil|mspud|pile(|_d-t|geo|geo|mat|opt)|soilchar|spri(_mod|damp)|spudmat)\b
+    - match: \b(?i)(api_soil|mspud|pile(|_d-t|geo|geo|mat|opt)|soilchar|sp(ri(_mod|damp)|udmat))\b
       scope: constant.other.fem
     # External and internal pressure Effects
     - match: \b(?i)(extpres|belpress|pressdat|surflev)\b
       scope: constant.numeric.fem
     # Super-element / sub-structure modelling
-    - match: \b(?i)(mesh(box|ipro|pipe|quad)|ssh_load|subshell|substru|superelm)\b
+    - match: \b(?i)(mesh(box|ipro|pipe|quad)|ssh_load|su(bshell|bstru|perelm))\b
       scope: constant.numeric.fem
     # Groups / parts
     - match: \b(?i)(group(def|nod)|name|part(data|elem))\b
@@ -116,7 +116,7 @@ contexts:
     - match: \b(?i)(elmin(sid|sul)|ins_grup|ins((id|ul)par|uldep)|pfplocal)\b
       scope: entity.name.type.fem
     # Fahts misc modelling
-    - match: \b(?i)(exp_(box|elem|grup|ipro|quad)|explocal|glview|kamelexp|limitmod|lin_rule|moviepri|no(exposure|nolinear)|pfpscale|remesh_box|remesh_i|shield|temp_plo|userdeluge)\b
+    - match: \b(?i)(exp_(box|elem|grup|ipro|quad)|explocal|glview|kamelexp|limitmod|lin_rule|moviepri|no(exposure|nolinear)|pfpscale|remesh_(box|i)|shield|temp_plo|userdeluge)\b
       scope: entity.name.type.fem
     # StruMan export format
     - match: \b(?i)(sesam|ufo|abaqus|raf|preframe|sacs|movbyu|vtf|loadfile)\b
@@ -125,5 +125,5 @@ contexts:
     - match: \b(?i)(mergstru|tolmerge|sub(_stru|smult|tran))\b
       scope: support.class.fem
     # StruMan misc commands
-    - match: \b(?i)(c(heckelm|hg2genb|ombload|onvunit)|fatigue|gebe2pip|hparatio|id_add_(a|e|g|l|m|n|x)|int_(ecno|elno|geno|lcno|mano|npno)|limitmod|loa(2mass|dtran)|map_mass|nodeset|printmas|rmfreenp|shriprop|strutran)\b
+    - match: \b(?i)(c(heckelm|hg2genb|ombload|onvunit)|fatigue|gebe2pip|hparatio|id_add_(a|e|g|l|m|n|x)|int_((ec|el|ge|lc|ma|np)no)|limitmod|loa(2mass|dtran)|map_mass|nodeset|printmas|rmfreenp|shriprop|strutran)\b
       scope: support.class.fem
